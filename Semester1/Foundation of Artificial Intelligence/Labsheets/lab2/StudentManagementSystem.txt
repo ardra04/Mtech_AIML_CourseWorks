@@ -1,0 +1,213 @@
+Student Managment System
+-----------------------------------
+
+
+Facts:49nos
+rules: 21 nos
+predicates: branch/2, studies/3,teaches/2,electiveoption/2,coursecredit/2,woman/1,subjectguide/2, attendance/2,projectteam/2, averagescore/2
+classmates/2,professor/2, subjectcredit/3, shecodemember/1,ladieshostel/1,biosmember/1,codingclubmember/1.....
+recursiverules:2nos
+atoms :
+variables :  
+complexterm : branch(amal,cs)
+head : lefthand side of rule : classmates(X,Y)
+goal : right hand side of rule :  branch(X,A) ,   branch(Y,A), -----
+queries:
+
+
+
+branch(amal,cs).
+branch(rohit,cs).
+branch(neha,cs).
+branch(nehal,cs).
+branch(vena,ece).
+branch(kiran,cs).
+branch(gowri,ece).
+
+
+
+studies(amal,cse501,cse502).
+studies(rohit,cse502,cse501).
+studies(neha,cse501,cse502).
+studies(nehal,cse501,cse502).
+studies(vena,ece501,ece502).
+studies(kiran,cse501,cse502).
+studies(gowri,ece502,ece501).
+
+teaches(manoj,cse502).
+teaches(ram,cse501).
+teaches(swetha,ece501).
+teaches(anitha,ece502).
+
+electiveoption(os,dsa).
+electiveoption(dsa,lp). 
+electiveoption(pe,qm).
+
+coursecredit(4,cse501).
+coursecredit(3,cse502).
+coursecredit(4,ece501).
+coursecredit(2,ece502).
+
+woman(nehal).
+woman(vena).
+woman(swetha).
+
+
+subject_guide(rupa,cse501).
+subject_guide(sita,cse502).
+subject_guide(swarup,ece501).
+subject_guide(pravin,ece502).
+
+attendance(rohit,30).
+attendance(amal,80).
+attendance(neha,50).
+attendance(neha,10).
+attendance(karthik,76).
+attendance(gowri,90).
+attendance(vena,80).
+
+
+projectteam(amal,rohit).
+projectteam(rohit,neha).
+projectteam(neha,fanha).
+projectteam(mary,femi).
+
+averagescore(amal,84).
+averagescore(karthik,20).
+averagescore(gowri,65).
+averagescore(vena,15).
+
+
+
+classmates(X,Y):- branch(X,A),branch(Y,A).
+professor(X,Y):-teaches(X,C),(studies(Y,C,_);studies(Y,_,C)).
+subjectcredit(X,Y,Z):- studies(X,D,E),coursecredit(Y,D),coursecredit(Z,E).
+ladieshostel(X):-woman(X),branch(X,_).
+shecodemember(X):-woman(X),subjectcredit(X,4,3).
+biosmember(X):- (branch(X,ece);branch(X,cs)).
+codingclubmember(X):- studies(X,cse501,_);studies(X,_,cse501).
+faculty(X):-teaches(X,_);subject_guide(X,_).           
+projectguide(X,Y):-subject_guide(X,H),studies(Y,H,_),branch(Y,cs).
+projectguide(X,Y):-subject_guide(X,H),studies(Y,H,_),branch(Y,ece).
+classrep(X):-(attendance(X,I),I>80),(shecodemember(X);biosmember(X)). 
+classcommittemembers(X):- faculty(X);classrep(X).
+canwriteexam(X) :- attendance(X,Y), Y >= 75.
+project(team(amal,rohit),houseboat):-studies(amal,cse501,_),studies(rohit,cse502,_),studies(neha,cse501,_).
+failedexam(X) :- averagescore(X,Y), Y =< 20.
+firstclass(X) :- averagescore(X,Y), Y > 20, Y=<80.
+distinction(X) :- averagescore(X,Y), Y >= 80.
+
+
+team(amal,rohit).
+team(rohit,neha).
+
+projectgroupmember(X,Z):- team(X,Z).
+projectgroupmember(X,Z):- team(X,Y),projectgroupmember(Y,Z).
+
+elective(X,Z):- electiveoption(X,Z). 
+elective(X,Z):- electiveoption(X,Y),(elective(Y,Z);elective(Z,Y)).
+
+
+
+
+------------------------------------------------------------------------
+
+branch(cs,amal).
+branch(cs,rohit).
+branch(cs,neha).
+branch(cs,nehal).
+branch(ece,vena).
+branch(cs,kiran).
+branch(ece,gowri).
+
+
+
+studies(cse501,cse502,amal).
+studies(cse502,cse501,rohit).
+studies(cse501,cse502,neha).
+studies(cse501,cse502,nehal).
+studies(ece501,ece502,vena).
+studies(cse501,cse502,kiran).
+studies(ece502,ece501,gowri).
+
+teaches(cse502,manoj).
+teaches(cse501,ram).
+teaches(ece501,swetha).
+teaches(ece502,anitha).
+
+electiveoption(os,dsa).
+electiveoption(dsa,lp). 
+electiveoption(pe,qm).
+
+coursecredit(4,cse501).
+coursecredit(3,cse502).
+coursecredit(4,ece501).
+coursecredit(2,ece502).
+
+femalestudent(nehal).
+femalestudent(vena).
+femalestudent(swetha).
+femalestudent(neha).
+femalestudent(gowri).
+
+malestudent(amal).
+malestudent(rohit).
+malestudent(kiran).
+
+
+classrep(gowri).
+
+subject_guide(cse501,rupa).
+subject_guide(cse502,sita).
+subject_guide(ece501,swarup).
+subject_guide(ece502,pravin).
+
+attendance(30,rohit).
+attendance(80,amal).
+attendance(50,neha).
+attendance(10,neha).
+attendance(76,karthik).
+attendance(90,gowri).
+attendance(80,vena).
+
+
+projectteam(amal,rohit).
+projectteam(rohit,neha).
+projectteam(neha,fanha).
+projectteam(mary,femi).
+
+averagescore(amal,84).
+averagescore(karthik,20).
+averagescore(gowri,65).
+averagescore(vena,15).
+
+team(amal,rohit).
+team(rohit,neha).
+
+
+
+
+classmates(Y,X):- branch(A,X),branch(A,Y).
+professor(Y,X):-teaches(C,X),(studies(C,_,Y);studies(_,C,Y)).
+subjectcredit(Y,Z,X):- studies(D,E,X),coursecredit(Y,D),coursecredit(Z,E).
+studentsladieshostel(X):-femalestudent(X),branch(_,X).
+faculty(X):-teaches(_,X);subject_guide(_,X).  
+ashramsidehostel(X):-malestudent(X),branch(_,X).
+shecodemember(X):-femalestudent(X),subjectcredit(4,3,X).
+biosmember(X):- branch(ece,X);branch(cs,X).
+codingclubmember(X):- studies(cse501,_,X);studies(_,cse501,X).
+canwriteexam(X) :- attendance(Y,X), Y >= 75.
+failedexam(X) :- averagescore(X,Y), Y =< 20.
+firstclass(X) :- averagescore(X,Y), Y > 20, Y=<80.
+distinction(X) :- averagescore(X,Y), Y >= 80. 
+classcommittemembers(X):- faculty(X);classrep(X).
+projectguide(Y,X):-subject_guide(H,X),studies(H,_,Y),branch(cs,Y).
+projectguide(Y,X):-subject_guide(H,X),studies(H,_,Y),branch(ece,Y).
+
+
+
+projectgroupmember(X,Z):- team(X,Z).
+projectgroupmember(X,Z):- team(X,Y),projectgroupmember(Y,Z).
+
+elective(X,Z):- electiveoption(X,Z). 
+elective(X,Z):- electiveoption(X,Y),elective(Y,Z).
