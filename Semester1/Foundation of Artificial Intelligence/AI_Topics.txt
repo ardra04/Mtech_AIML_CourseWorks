@@ -15,10 +15,7 @@ Problem searching (informed and uninformed)
  - AO*
  - Iterative Deepening Search (ID)
  - Iterative Deepening A* (IDA*)
-
-
 Modelling problems as statespace
-
 Min max Algorithm
 Alpha Beta Pruning
 Constraint Satisfaction Problem
