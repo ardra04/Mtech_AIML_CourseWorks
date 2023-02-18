@@ -1,0 +1,29 @@
+Propositional logic
+Forward chaining
+Backward chaining
+Resolution
+Agents
+Problem searching (informed and uninformed)
+ - Breadth First Search (BFS)
+ - Deapth First Search (DFS)
+ - Deapth Limited Search (DLS)
+ - Bidirectional Search
+ - Uniform Cost Search (UCS)
+ - 8 Puzzle Problem
+ - Best First Search
+ - A*
+ - AO*
+ - Iterative Deepening Search (ID)
+ - Iterative Deepening A* (IDA*)
+
+
+Modelling problems as statespace
+
+Min max Algorithm
+Alpha Beta Pruning
+Constraint Satisfaction Problem
+Cryptoarithmatic
+Goal stack planning
+Partial order planning
+Probabilistic reasoning
+Bayesian Network (Alarm problem)
